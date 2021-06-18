@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css?aaA">
+	<title>ShowResult.html</title>
+</head>
+<body>
+	<!--
+	<ul class="nav">
+		<li class="button"><a href="Query.html">SEARCH</a></li>
+		<li><a href="ShowResult.html">RESULT</a></li>
+		<li><a href="about.html">About</a></li>
+	</ul>
+	-->
+	<button class="button" style="font-size:40px"onclick="location.href='Query.html'">검색창 돌아가기</button>
+
+	<p id='count'> this is count </p>
+	<p id='text1'> this is result </p>
+
+	<script type="text/javascript">
+
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(this.readyState==4 && this.status==200) {
+			var x = this.responseText;
+			//Search.php <meta~ 이부분때문에 JSON.parse오류 떳음;
+			//개발자도구에 console창가면 debug가능
+			var myArr = JSON.parse(x);
+			printScreen(myArr);
+		}
+	}
+	xhttp.open("POST", "Search.php", true);
+	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	xhttp.send("num=2");
+
+	function printScreen(arr){
+		var out = "";
+		var i;
+		if(arr.length==0){
+			document.getElementById('count').innerHTML = "count: 0";
+			document.getElementById('text1').innerHTML = "No Result";
+		}
+		else{
+			document.getElementById('count').innerHTML = "검색결과 : " + arr.length + "개 기사";
+			out += '<ul class="mylist">';
+			for(i=0;i<arr.length;i++){
+				out += '<li><a href="' + arr[i].url + '" style="text-decoration:none;color:black"><img src="'+arr[i].imgurl+'"/>'+ "  "+ arr[i].title + "<br>"+arr[i].views+" views"+'</a></li>';
+			}
+			out += '</ul>';
+			document.getElementById('text1').innerHTML = out;
+		}
+	}
+	</script>
+</body>
+</html>

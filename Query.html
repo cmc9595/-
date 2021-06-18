@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Query.html</title>
+	<link rel="stylesheet" href="style.css?af">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script type="text/javascript"> 
+	$(function() {
+		$("#name").autocomplete({
+			source : function(request, response){
+				$.ajax({
+					type:"POST",
+					url:"Search.php",
+					dataType:"json",
+					data:{"num":"1", "val":$("#name").val()},
+					//data:{"num":"1"},
+					success: function(data){
+						response(
+							$.map(data, function(item){
+								return{
+									label: item,
+									value: item,
+									test : item+"test"
+								}
+							})
+						);
+					},
+					error:function(){
+						alert("통신fail");
+					}
+				});
+			},
+			select : function(event, ui){
+				console.log(ui)
+				//console.log(ui.item.label);
+				//console.log(ui.item.value);
+				console.log(ui.item.test);
+			},
+			focus : function(event, ui){
+				return false;
+			},
+			minLength: 1,//2로하면 두글자부터 찾아짐;;
+			autoFocus: true,
+			classses:{
+				"ui-autocomplete":"highlight"
+			},
+			//delay: 500,
+			position: {my:"right top", at: "right bottom"},
+			close : function(event){
+				console.log(event);
+			}
+		});
+	});
+	</script> 
+</head>
+<body>
+	<div class="main1">
+		<h1 class="title1">네이버 해외축구 기사 검색기</h1>
+	</div>
+	<h1 class="header">원하는 검색어를 입력하세요</h1>
+	
+	<div class="main2">
+
+	<center>
+	<input class="inputbox1" type='text' id='name' placeholder='ex) 호날두' onkeyup='enterkey()'> 
+	<button class="inputbox2" onclick='myFunction()'>기사 찾기</button>
+	</center>
+
+	</div>
+	<script type="text/javascript">
+	function enterkey(){
+		if(window.event.keyCode==13){
+			myFunction();
+		}
+	}
+	function myFunction(){
+		var xhttp = new XMLHttpRequest();
+		var x = document.getElementById("name").value;
+
+		xhttp.onreadystatechange = function(){
+			if(this.readyState==4 && this.status==200){
+				//alert(this.responseText);
+			}
+		}
+		xhttp.open('POST', 'Search.php', true);
+		xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhttp.send("num=0&val="+x);
+
+		location.href = "ShowResult.html";
+	}
+	</script>
+</body>
+</html>

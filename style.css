@@ -1,0 +1,145 @@
+/*input::placeholder{
+	color: red;
+	font-style: italic;
+}*/
+html,
+body{
+	margin: 0px;
+	padding: 0px;
+	/*font-family: "Montserrat";*/
+	width:100vw;
+	height:100vh;
+}
+
+.nav{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+.nav li{
+	display: inline-block;
+	font-size: 20px;
+	padding: 0px;
+	margin: 0px;
+}
+li a{
+	display: block;
+	padding: 8px;
+}
+.title1{
+	color:white;
+	text-shadow: 0 0 7px red;
+	text-align:center;
+	position:relative;
+	top:200px;
+	font-size:100px;
+	line-height:normal;
+}
+.main1{
+	/*border:3px solid blue;*/
+	font-size:60px;
+	height: 50vh;
+	background-image: url('1.jpg');
+	padding: 0px;
+	margin: 0px;
+}
+.main2{
+	font-size:60px;
+	height: 50vh;
+	background-image: url('2.jpg');
+	padding: 0px;
+	margin: 0px;
+}
+.inputbox1{
+	font-size:50px;
+	border:2px solid black;
+	border-radius: 5px;
+}
+.inputbox2{
+	font-size:45px;
+	border:2px solid black;
+	border-radius: 5px;
+	background-color: #7FFF00;
+}
+.button{
+	background-color: white;
+	font-size: 24px;
+	border-radius: 12px;
+	border: 2px solid black;
+	transition-duration: 0.6s;
+}
+.button:hover{
+	background-color: #00FFFF;
+	color: red
+}
+.header{
+	text-align:center;
+	background: #ECDFBF;
+	overflow: hidden;
+	padding: 20px;
+	margin: 0;
+}
+.container{
+	background: #FFFFF5;
+	padding: 1%;
+}
+.item{
+	margin: 3% 0px;
+	display: flex;
+	align-items: center;
+}
+.icon{
+	width: 25px;
+	height: 25px;
+	background: #E0D3B6;
+	color: white;
+	font-size: 15px;
+	text-align: center;
+	line-height: 25px;
+	border-radius: 50%;
+	margin-right: 8px;
+}
+
+ul.mylist, ol.mylist{
+	list-style:none;
+	margin:0px;
+	padding:0px;
+	max-width:100%;
+	/*width:100%;*/
+
+	background: #3399ff;
+	padding: 20px;
+}
+ul.mylist li, ol.mylist li{
+	padding: 5px 0px 5px 5px;
+	margin-bottom: 5px;
+	/*margin-left: 50px;*/
+	border: 3px solid #efefef;
+	font-size: 24px;
+
+	background: #cce5ff;
+	/*padding: 20px;*/
+}
+ul.mylist li:before,
+ol.mylist li:before{
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0px 5px 6px 0px;
+}
+
+@media( max-width: 1172px){
+	ul.mylist li, ol.mylist li{
+		padding: 5px 0px 5px 5px;
+		margin-bottom: 5px;
+		border: 3px solid #efefef;
+		font-size: 15px;
+		background: #cce5ff;
+	}
+	ul.mylist li:before,
+	ol.mylist li:before{
+		display: inline-block;
+		vertical-align: middle;
+		padding: 0px 5px 6px 0px;
+	}
+}
